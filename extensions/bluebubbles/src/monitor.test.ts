@@ -28,6 +28,12 @@ vi.mock("./attachments.js", () => ({
     buffer: Buffer.from("test"),
     contentType: "image/jpeg",
   }),
+  sendBlueBubblesAttachment: vi.fn().mockResolvedValue({ messageId: "att-msg-123" }),
+}));
+
+vi.mock("./probe.js", () => ({
+  fetchBlueBubblesServerInfo: vi.fn().mockResolvedValue(null),
+  getCachedBlueBubblesPrivateApiStatus: vi.fn().mockReturnValue(null),
 }));
 
 vi.mock("./reactions.js", async () => {
