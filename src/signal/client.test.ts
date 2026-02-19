@@ -229,9 +229,9 @@ describe("signal client backend compatibility", () => {
 
   it("waits for async REST event handlers before polling again", async () => {
     const abortController = new AbortController();
-    let releaseHandler: (() => void) | null = null;
+    let releaseHandler: (() => void) | undefined;
     const handlerBlocked = new Promise<void>((resolve) => {
-      releaseHandler = resolve;
+      releaseHandler = () => resolve();
     });
     let handlerStarted: (() => void) | null = null;
     const onHandlerStarted = new Promise<void>((resolve) => {
